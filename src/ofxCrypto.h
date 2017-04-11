@@ -49,6 +49,7 @@
 #include "Poco/StreamCopier.h"
 #include "Poco/Base64Decoder.h"
 #include "Poco/Base64Encoder.h"
+#include "Poco/HMACEngine.h"
 
 using Poco::DigestEngine;
 using Poco::MD5Engine;
@@ -57,6 +58,7 @@ using Poco::Base64Encoder;
 using Poco::Base64Decoder;
 using Poco::DigestOutputStream;
 using Poco::StreamCopier;
+using Poco::HMACEngine;
 
 class ofxCrypto {
 public:
@@ -67,4 +69,7 @@ public:
 
     static string base64_encode(ofBuffer &buffer);
     static ofBuffer base64_decode_to_buffer(string source);
+
+	static string hmac_md5(string passphrase, string message);
+	static string hmac_sha1(string passphrase, string message);
 };

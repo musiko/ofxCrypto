@@ -93,3 +93,19 @@ ofBuffer ofxCrypto::base64_decode_to_buffer(string source) {
     
     return buffer;
 }
+
+string ofxCrypto::hmac_md5(string passphrase, string message) {
+	HMACEngine<MD5Engine> hmac(passphrase);
+	hmac.update(message);
+	const DigestEngine::Digest& digest = hmac.digest();
+	string str(DigestEngine::digestToHex(digest));
+	return str;
+}
+
+string ofxCrypto::hmac_sha1(string passphrase, string message) {
+	HMACEngine<SHA1Engine> hmac(passphrase);
+	hmac.update(message);
+	const DigestEngine::Digest& digest = hmac.digest();
+	string str(DigestEngine::digestToHex(digest));
+	return str;
+}
